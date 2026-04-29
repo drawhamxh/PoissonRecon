@@ -210,13 +210,13 @@ clean:
 	rm -rf $(RE_OBJECTS)
 	rm -rf $(PTD_OBJECTS)
 	rm -rf $(SN_OBJECTS)
-	cd PNG  && make clean
+	cd PNG  && $(MAKE) clean
 
 make_dir:
 	$(MD) -p $(BIN)
 
 $(BIN)$(PR_TARGET): $(PR_OBJECTS)
-	cd PNG  && make COMPILER=$(COMPILER)
+	cd PNG  && $(MAKE) COMPILER=$(COMPILER)
 	$(CXX) -pthread -o $@ $(PR_OBJECTS) -L$(BIN) $(LFLAGS) $(LFLAGS_IMG)
 
 $(BIN)$(PRC_TARGET): $(PRC_OBJECTS)
@@ -226,11 +226,11 @@ $(BIN)$(PRS_TARGET): $(PRS_OBJECTS)
 	$(CXX) -pthread -o $@ $(PRS_OBJECTS) -L$(BIN) -lboost_system $(LFLAGS)
 
 $(BIN)$(SR_TARGET): $(SR_OBJECTS)
-	cd PNG  && make COMPILER=$(COMPILER)
+	cd PNG  && $(MAKE) COMPILER=$(COMPILER)
 	$(CXX) -pthread -o $@ $(SR_OBJECTS) -L$(BIN) $(LFLAGS) $(LFLAGS_IMG)
 
 $(BIN)$(PI_TARGET): $(PI_OBJECTS)
-	cd PNG  && make COMPILER=$(COMPILER)
+	cd PNG  && $(MAKE) COMPILER=$(COMPILER)
 	$(CXX) -pthread -o $@ $(PI_OBJECTS) -L$(BIN) $(LFLAGS) $(LFLAGS_IMG)
 
 $(BIN)$(ST_TARGET): $(ST_OBJECTS)
@@ -240,15 +240,15 @@ $(BIN)$(EH_TARGET): $(EH_OBJECTS)
 	$(CXX) -pthread -o $@ $(EH_OBJECTS) $(LFLAGS)
 
 $(BIN)$(IS_TARGET): $(IS_OBJECTS)
-	cd PNG  && make COMPILER=$(COMPILER)
+	cd PNG  && $(MAKE) COMPILER=$(COMPILER)
 	$(CXX) -pthread -o $@ $(IS_OBJECTS) -L$(BIN) $(LFLAGS) $(LFLAGS_IMG)
 
 $(BIN)$(AV_TARGET): $(AV_OBJECTS)
-	cd PNG  && make COMPILER=$(COMPILER)
+	cd PNG  && $(MAKE) COMPILER=$(COMPILER)
 	$(CXX) -pthread -o $@ $(AV_OBJECTS) -L$(BIN) $(LFLAGS) $(LFLAGS_IMG)
 
 $(BIN)$(CP_TARGET): $(CP_OBJECTS)
-	cd PNG  && make COMPILER=$(COMPILER)
+	cd PNG  && $(MAKE) COMPILER=$(COMPILER)
 	$(CXX) -pthread -o $@ $(CP_OBJECTS) -L$(BIN) $(LFLAGS) $(LFLAGS_IMG)
 
 $(BIN)$(RE_TARGET): $(RE_OBJECTS)

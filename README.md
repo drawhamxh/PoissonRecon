@@ -1,4 +1,4 @@
-<center><h2>Adaptive Multigrid Solvers (Version 18.74)</h2></center>
+<center><h2>Adaptive Multigrid Solvers (Version 18.76)</h2></center>
 <center>
 <a href="#LINKS">links</a>
 <a href="#COMPILATION">compilation</a>
@@ -29,10 +29,12 @@ This code-base was born from the Poisson Surface Reconstruction code. It has evo
 <a href="https://www.cs.jhu.edu/~misha/MyPapers/CGF23.pdf">[Kazhdan and Hoppe, 2023]</a>
 <br>
 <b>Executables: </b>
-<a href="https://www.cs.jhu.edu/~misha/Code/PoissonRecon/Version18.74/AdaptiveSolvers.x64.zip">Win64</a><br>
+<a href="https://www.cs.jhu.edu/~misha/Code/PoissonRecon/Version18.76/AdaptiveSolvers.x64.zip">Win64</a><br>
 <b>Source Code:</b>
-<a href="https://www.cs.jhu.edu/~misha/Code/PoissonRecon/Version18.74/AdaptiveSolvers.zip">ZIP</a> <a href="https://github.com/mkazhdan/PoissonRecon">GitHub</a><br>
+<a href="https://www.cs.jhu.edu/~misha/Code/PoissonRecon/Version18.76/AdaptiveSolvers.zip">ZIP</a> <a href="https://github.com/mkazhdan/PoissonRecon">GitHub</a><br>
 <b>Older Versions:</b>
+<a href="https://www.cs.jhu.edu/~misha/Code/PoissonRecon/Version18.75/">V18.75</a>,
+<a href="https://www.cs.jhu.edu/~misha/Code/PoissonRecon/Version18.74/">V18.74</a>,
 <a href="https://www.cs.jhu.edu/~misha/Code/PoissonRecon/Version18.73/">V18.73</a>,
 <a href="https://www.cs.jhu.edu/~misha/Code/PoissonRecon/Version18.72/">V18.72</a>,
 <a href="https://www.cs.jhu.edu/~misha/Code/PoissonRecon/Version18.71/">V18.71</a>,
@@ -123,10 +125,11 @@ This code-base was born from the Poisson Surface Reconstruction code. It has evo
 <hr>
 <a name="COMPILATION"><b>COMPILATION</b></a><br>
 <ul>
-<LI> For efficiency, the code is designed to compile for the specific FEM degree and boundary condition specified in <I>PoissonRecon.h</I>. (Specifically, <B>DEFAULT_FEM_DEGREE</B> is set to 1 and <B>DEFAULT_FEM_BOUNDARY</B> is set to Neumann.) You can change the default values in <I>PoissonRecon.h</I>. You can also compile the code so that it supports varying FEM degrees and boundary conditions by un-<CODE>#define</CODE>-ing <B>FAST_COMPILE</B> in <I>PreProcess.h</I>. However, this will make the compilation significantly slower.
+<LI> For efficiency, the code is designed to compile for the specific FEM degree and boundary condition specified in <I>PoissonRecon.h</I>. (Specifically, <B>DEFAULT_FEM_DEGREE</B> is set to 1 and <B>DEFAULT_FEM_BOUNDARY</B> is set to Neumann.) You can change the default values in <I>PoissonRecon.h</I>. You can also compile the code so that it supports varying FEM degrees and boundary conditions by <CODE>#undef</CODE>-ing <B>FAST_COMPILE</B> pre-processor definition in <I>PreProcess.h</I>. However, this will make the compilation significantly slower.
 <LI> By default, the implementation assumes that all indexing can be done with 32-bit integers. If you are reconstructing large scenes and need more bits for indexing, you should enable the <B>BIG_DATA</B> flag in <I>PreProcessor.h</I>. Note that if the generated mesh has more primitives than can be indexed by a 32-bit integer, the output <i>.ply</i> file will store the integers using 64-bit precision (designated by the <i>long long</i> type) instead of the standard 32-bit precision (designated by the <i>int</i> type). Note that this is not a standard format and software like <A HREF="https://www.meshlab.net/">MeshLab</A> may not be able to read the file.
 <LI> The distributed PSR code uses sockets for communication between the client and the server. These are supported in a cross-platform way via <A HREF="https://www.boost.org">Boost</A>. (The code was developed and tested under Boost <A HREF="https://www.boost.org/users/history/version_1_80_0.html">version 1.80.0</A>.)<br>
 <LI> To support reading/writing images, the code requires installation of the <i>zlib</i>, <i>png</i>, and <i>jpg</i> libraries. Source code for these is included for compilation using Visual Studios. The Makefile assumes that the header files can be found in <i>/usr/local/include/</i> and that the library files can be found in <i>/usr/local/lib/</i>.
+<LI> In version 18.76, the default implementation of JPEG has been replaced to use <A HREF="https://github.com/libjpeg-turbo/libjpeg-turbo">libjpeg-turbo</A>. You can revert to the earlier implementation by <CODE>#undef</CODE>-ing the <B>USE_JPEG_TURBO</B> pre-processor definition in <I>PreProcessor.h</I>.
 </UL>
 </ul>
 <hr>
@@ -1791,6 +1794,16 @@ Similarly, to reduce compilation times, support for specific degrees can be remo
 <a href="https://www.cs.jhu.edu/~misha/Code/PoissonRecon/Version18.74/">Version 18.74</a>:
 <OL>
 <LI> Made code compliant with MSVC 17.14.
+</OL>
+
+<a href="https://www.cs.jhu.edu/~misha/Code/PoissonRecon/Version18.75/">Version 18.75</a>:
+<OL>
+<LI> Integrated <A HREF="https://github.com/mkazhdan/PoissonRecon/pull/323">bug-fix</A>
+</OL>
+
+<a href="https://www.cs.jhu.edu/~misha/Code/PoissonRecon/Version18.76/">Version 18.76</a>:
+<OL>
+<LI> Added, and set as default, the <A HREF="https://github.com/libjpeg-turbo/libjpeg-turbo">libjpeg-turbo</A> implementation of JPEG compression.
 </OL>
 
 </DETAILS>

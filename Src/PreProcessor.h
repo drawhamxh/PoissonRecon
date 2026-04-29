@@ -36,7 +36,9 @@ DAMAGE.
 												// The executable ChunkPLY can help by partitioning the mesh into more manageable chunks
 												// (each of which is small enough to be represented using 32-bit indexing.)
 #endif // BIG_DATA
-						
+
+#define USE_JPEG_TURBO							// JPEG turbo library
+
 //#define SANITIZED_PR								// If enabled, produces CLANG-sanitized code [thread/undefined/address]
 //#define FAST_COMPILE								// If enabled, only a single version of the code is compiled
 #undef SHOW_WARNINGS							// Display compilation warnings
@@ -46,7 +48,7 @@ DAMAGE.
 #define USE_DEEP_TREE_NODES						// Chances are that if you are using big data, you want to support a tree with depth>15.
 #endif // BIG_DATA
 
-#define ADAPTIVE_SOLVERS_VERSION "18.75"		// The version of the code
+#define ADAPTIVE_SOLVERS_VERSION "18.76"		// The version of the code
 #define MEMORY_ALLOCATOR_BLOCK_SIZE 1<<12		// The chunk size for memory allocation
 
 #define ADAPTIVE_PADDING						// Only pushes padding points deep enough so that they are "close" to the slab in terms of units at that depth

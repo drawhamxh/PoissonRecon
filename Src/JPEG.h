@@ -36,13 +36,23 @@ DAMAGE.
 
 #ifdef _WIN32
 #include <windows.h>
+#ifdef USE_JPEG_TURBO
+#include "JPEG-turbo/turbojpeg.h"
+#include "JPEG-turbo/jpeglib.h"
+#else // !USE_JPEG_TURBO
 #include "JPEG/jpeglib.h"
 #include "JPEG/jerror.h"
 #include "JPEG/jmorecfg.h"
+#endif // USE_JPEG_TURBO
 #else // !_WIN32
+#ifdef USE_JPEG_TURBO
+#include <turbojpeg.h>
+#include <jpeglib.h>
+#else // !USE_JPEG_TURBO
 #include <jpeglib.h>
 #include <jerror.h>
 #include <jmorecfg.h>
+#endif // USE_JPEG_TURBO
 #endif // _WIN32
 
 namespace PoissonRecon
